@@ -12,3 +12,12 @@
 - Tasks ที่รอ Open Question: T-10, T-13, T-14 รอ Q-02 เรื่องรูปแบบและวิธีออกหมายเลขคิว
 - การตรวจความครบ: AC-BKG-01 ถึง AC-BKG-06 มี task ตรวจครบ และ Constraint CON-TECH-01, DOM-PDPA-01, IF-IDP-01, IF-HIS-01, IF-NOT-01 มี task รองรับครบ
 - ยังไม่เริ่มทำ task ใด ๆ และยังไม่มีการเขียนโค้ด
+
+---
+
+## 2569-09-23 คำสั่ง: /implement T-01
+
+- ไฟล์ที่สร้าง: backend/app/db/models.py, backend/app/db/session.py, backend/app/db/migrations/001_init.py, backend/tests/conftest.py
+- ผล test: `pytest` รันได้แต่ยังไม่มี test; smoke test ของ migration ผ่าน โดยสร้างตาราง slots, bookings, audit_logs และไม่พบคอลัมน์ national_id ใน bookings
+- Diagnostics: ไม่พบข้อผิดพลาดในไฟล์ที่สร้าง
+- สิ่งที่เกือบต้องเดา: ไม่ได้กำหนดรูปแบบหรือวิธีออกหมายเลขคิว จึงคง queue_no เป็น nullable ตาม Q-02 และไม่สร้าง logic การออกเลขคิว

@@ -14,7 +14,7 @@ Tasks ที่รอ Q-02 จะยังไม่ตัดสินใจร�
 - ไฟล์ที่แตะ: backend/app/db/models.py, backend/app/db/session.py, backend/app/db/migrations/001_init.py, backend/tests/conftest.py
 - ต้องทำหลัง: ไม่มี
 - เสร็จเมื่อ: migration สร้างตาราง slots, bookings และ audit_logs ได้ และตาราง bookings ไม่มีคอลัมน์เลขบัตรประชาชน
-- สถานะ: พร้อมทำ
+- สถานะ: เสร็จ รอทีมตรวจ
 
 ### T-02 เชื่อมการยืนยันตัวตนและค้น HN
 - รองรับ: IF-IDP-01, IF-HIS-01, ASM-04
