@@ -4,6 +4,7 @@
 const BASE = import.meta.env.VITE_API_BASE ?? '/api'
 
 export const api = {
+  // ค้นหาช่วงเวลาตามแพ็กเกจและวันเริ่มต้นตาม FR-BKG-01 และ FR-BKG-06.
   async getSlots({ dateFrom, packageCode }) {
     const q = new URLSearchParams({ date_from: dateFrom, package_code: packageCode })
     const res = await fetch(`${BASE}/slots?${q}`)

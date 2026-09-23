@@ -21,3 +21,12 @@
 - ผล test: `pytest` รันได้แต่ยังไม่มี test; smoke test ของ migration ผ่าน โดยสร้างตาราง slots, bookings, audit_logs และไม่พบคอลัมน์ national_id ใน bookings
 - Diagnostics: ไม่พบข้อผิดพลาดในไฟล์ที่สร้าง
 - สิ่งที่เกือบต้องเดา: ไม่ได้กำหนดรูปแบบหรือวิธีออกหมายเลขคิว จึงคง queue_no เป็น nullable ตาม Q-02 และไม่สร้าง logic การออกเลขคิว
+
+---
+
+## 2569-09-23 คำสั่ง: /implement T-11
+
+- ไฟล์ที่สร้างหรือแก้: frontend/src/pages/SlotPicker.jsx, frontend/src/App.jsx, frontend/src/api/client.js, frontend/src/__tests__/SlotPicker.test.jsx
+- ผล test: รอบแรกพบปัญหา timezone ในการคำนวณวันที่; หลังแก้แล้ว `npm test` ผ่าน 2 test files และ 2 tests
+- Diagnostics: ไม่พบข้อผิดพลาดในไฟล์ที่แตะ
+- สิ่งที่เกือบต้องเดา: spec ไม่ระบุรายการหรือรหัสแพ็กเกจ จึงใช้ช่องกรอกรหัสแพ็กเกจและไม่สร้างรายการแพ็กเกจขึ้นเอง
