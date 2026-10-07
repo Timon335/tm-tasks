@@ -66,3 +66,22 @@
 - ผล `cd backend && pytest -v`: 6 passed, 1 failed
 - ผ่าน: test_TC_BKG_01_1_successful_booking, test_TC_BKG_01_3_booking_without_identity_verification
 - ไม่ผ่าน: test_TC_BKG_01_2_booking_when_slot_becomes_full — โค้ดระบบตอบ 201 และสร้างการจองเมื่อ remaining เป็น 0 แทนที่จะตอบ 409 ตาม FR-BKG-03; การเสนอ 3 ช่วงใกล้เคียงยังไม่ได้สร้าง
+
+---
+
+## 2569-10-07 08.33 คำสั่ง: /verify specs/001-booking/
+
+- ไฟล์ที่สร้าง: specs/001-booking/rtm.md
+- ผล test: backend 6 ผ่าน 1 ไม่ผ่าน; frontend 1 ผ่าน 0 ไม่ผ่าน
+- ตารางตามรอยไปข้างหน้า: ครบ 1, ยังไม่ถึง 5, รอ 0, ช่องโหว่ 9
+- F-ID ข้อค้นพบใหม่: F-001 ถึง F-011
+- ข้อค้นพบหลัก: ตรวจช่วงเต็มผิดเงื่อนไข, จำกัดช่วงว่าง 14 วันแทน 30 วัน, เดา Q-02 ด้วย A001, รับและ log national_id, เพิ่ม endpoint ยกเลิกนอก scope, test performance ไม่ได้ทดสอบ concurrent users, และยังไม่มี TLS/audit/notification ตาม requirement
+
+---
+
+## 2569-10-07 08.38 คำสั่ง: แก้โค้ดของแถมอยู่ใน Out of scope (UC-02) ลบ endpoint และ cancel_booking ออก
+
+- ไฟล์ที่แก้: backend/app/booking/router.py, backend/app/booking/service.py, specs/001-booking/rtm.md
+- ผล: ลบ `DELETE /bookings/{booking_id}` และฟังก์ชัน `cancel_booking` ออกจากระบบ
+- F-006: ย้ายไปหัวข้อ "แก้แล้ว" ใน RTM และคงข้อความข้อค้นพบเดิมไว้
+- ยังไม่ได้แก้ข้อค้นพบอื่น
