@@ -54,3 +54,15 @@
 - TC ID ที่เสนอ: TC-BKG-01-1, TC-BKG-01-2, TC-BKG-01-3
 - ผล test: ยังไม่เขียนและยังไม่รันตามโหมดร่าง
 - ประเด็นที่ spec ไม่ได้บอก: ผลลัพธ์เมื่อยืนยันการจองโดยยังไม่ได้ยืนยันตัวตน
+
+---
+
+## 2569-10-07 08.22 คำสั่ง: /testcases AC-BKG-01 specs/001-booking/
+
+- โหมด: เขียน test (ทีมเปลี่ยนสถานะ TC-BKG-01-1 ถึง TC-BKG-01-3 เป็น "ใช้ได้")
+- ไฟล์ที่แก้: backend/tests/test_AC_BKG_01.py
+- test ที่เขียนเพิ่ม: test_TC_BKG_01_1_successful_booking, test_TC_BKG_01_2_booking_when_slot_becomes_full, test_TC_BKG_01_3_booking_without_identity_verification
+- ไม่ได้เขียน test หน้าจอ เพราะ T-06 ยังรอ Q-02 และยังไม่มี BookingResult
+- ผล `cd backend && pytest -v`: 6 passed, 1 failed
+- ผ่าน: test_TC_BKG_01_1_successful_booking, test_TC_BKG_01_3_booking_without_identity_verification
+- ไม่ผ่าน: test_TC_BKG_01_2_booking_when_slot_becomes_full — โค้ดระบบตอบ 201 และสร้างการจองเมื่อ remaining เป็น 0 แทนที่จะตอบ 409 ตาม FR-BKG-03; การเสนอ 3 ช่วงใกล้เคียงยังไม่ได้สร้าง
