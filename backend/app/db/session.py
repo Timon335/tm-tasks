@@ -1,23 +1,17 @@
-import os
-from collections.abc import Generator
-
+# สร้าง engine และ session ของฐานข้อมูล (CON-TECH-01)
 from sqlalchemy import create_engine
-from sqlalchemy.engine import Engine
-from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.orm import sessionmaker
+
+from app.config import DATABASE_URL
+
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(bind=engine, autoflush=False)
 
 
-def get_engine(database_url: str | None = None) -> Engine:
-    """สร้าง engine จาก DATABASE_URL เพื่อใช้ PostgreSQL ในระบบจริงตาม CON-TECH-01."""
-    url = database_url or os.getenv("DATABASE_URL", "sqlite:///:memory:")
-    connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
-    return create_engine(url, connect_args=connect_args, pool_pre_ping=True)
-
-
-def get_session(engine: Engine) -> Generator[Session, None, None]:
-    """เปิดและปิด session สำหรับการเข้าถึงข้อมูลการจองตาม FR-BKG-04."""
-    session_factory = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
-    session = session_factory()
+def get_db():
+    """ส่ง session ให้ API แต่ละตัว แล้วปิดเมื่อจบ"""
+    db = SessionLocal()
     try:
-        yield session
+        yield db
     finally:
-        session.close()
+        db.close()
